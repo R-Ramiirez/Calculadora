@@ -43,8 +43,11 @@
                 echo "<div class='data-item'><h3>Historia y Ciencias Sociales:</h3><p>$chistoria</p></div>";
                 echo "<div class='data-item'><h3>Ciencias:</h3><p>$cciencias</p></div>";
                 echo "<div class='data-item'><h3>Competencia Matemática 2:</h3><p>$cmatematica2</p></div>";
-                echo "<div class='data-item cuadrado'><h3 class='text-decoration-none' tabindex='0' data-bs-toggle='popover' data-bs-trigger='hover focus' data-bs-content='Promedio entre los puntaje COMPRENSION LECTORA Y COMPRENSION MATEMATICA 1'>Puntaje Promedio<br>de Postulacion: <strong>$promedio</strong></h3></div>";
+                echo "<div class='data-item cuadrado'><h3 class='text-decoration-none' tabindex='0' data-bs-toggle='popover' data-bs-trigger='hover focus' data-bs-content='Promedio entre los puntaje COMPRENSION LECTORA Y COMPRENSION MATEMATICA 1'><i class='fas fa-info-circle'></i> Puntaje Promedio<br>de Postulacion: <strong>$promedio</strong></h3></div>";
                 echo "</div>";
+
+                echo "<br>";
+                echo"*En el resultado de tu simulación verás marcadas <strong>en color verde</strong> las carreras en las que te ubicas sobre el Puntaje mínimo de postulación. <strong>En color rojo</strong>, aparecerán aquellas carreras en las que te encuentras bajo ese puntaje, o aquellas en que no cumplas algún requisito adicional. <strong>En color naranjo</strong>, verás aquellas carreras en que se cumpla el puntaje mínimo de postulación, pero debes revisar otros factores externos a la universidad.*";
                 echo "</div>";
             } else {
                 echo "<p>No se han recibido datos del formulario.</p>";
@@ -54,18 +57,28 @@
         <br>
         <div class="container-calc">
             <table class="table_id table-larger-font text-center">
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>¡Atención!</strong> Si posicionas el mouse sobre cada <strong>Puntaje Ponderado de Postulación</strong> encontrarás los porcentajes (%) utilizados en el cálculo para cada carrera.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <a href="#" class="alert-link" onclick="window.location.href='https://acceso.mineduc.cl/portal-pedagogias/#:~:text=Sólo%20para%20el%20Proceso%20de,60%2C%20será%20de%20528%20puntos'; return false;">
+                        ¡Atención! Para postular a carreras de Pedagogía debes cumplir con al menos uno de los cinco criterios establecidos por la ley N° 20.129. Haz click aquí para revisar los criterios de postulación obligatorios.
+                    </a>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 <thead>
                     <tr class="data-container2">
-                        <th>Código</th>
-                        <th>Carrera</th>
-                        <th>Vacantes 2025</th>
-                        <th>Puntaje Último Matriculado 2024</th>
-                        <th>
-                            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="El puntaje ponderado es la suma de los porcentajes de las pruebas que cada carrera evalúa durante el proceso de acceso a la universidad. Cada universidad y carrera establece distintos porcentajes de postulación la cual se mide en una escala de 100 a 1.000.">
-                                Puntaje Ponderado de Postulación
+                        <th class="col-1">Código</th>
+                        <th class="col-3">Carrera</th>
+                        <th class="col-1">Vacantes 2025</th>
+                        <th class="col-1">Puntaje Último Matriculado 2024</th>
+                        <th class="col-1">
+                            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="El Puntaje Ponderado de Postulación es la suma de los porcentajes de las pruebas exigidas que cada carrera evalúa durante el proceso de acceso a la universidad. Cada universidad y carrera establece distintos porcentajes de postulación la cual se mide en una escala de 100 a 1.000.">
+                                Puntaje Ponderado de Postulación <i class="fas fa-info-circle"></i>
                             </span>
                         </th>
-                        <th></th>
+                        <th class="col-1"></th>
                         <th class="col-3">Observaciones</th>
                     </tr>
                 </thead>
@@ -83,8 +96,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($agronomia > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($agronomia > 457) {
                         ?>
                                 <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
                             <?php
@@ -101,15 +114,15 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($agronomia > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($agronomia > 457) {
                                     echo "Cumples con los requisitos de puntaje para la postulación.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($agronomia > 458) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($agronomia > 457) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -130,8 +143,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($arquitectura > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($arquitectura > 457) {
                         ?>
                                 <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
                             <?php
@@ -148,15 +161,15 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($arquitectura > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($arquitectura > 457) {
                                     echo "Cumples con los requisitos de puntaje para la postulación.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($arquitectura > 458) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($arquitectura > 457) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -177,8 +190,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($auditoria > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($auditoria > 457) {
                         ?>
                                 <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
                             <?php
@@ -195,15 +208,15 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($auditoria > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($auditoria > 457) {
                                     echo "Cumples con los requisitos de puntaje para la postulación.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($auditoria > 458) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($auditoria > 457) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -224,8 +237,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($biologia_marina > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($biologia_marina > 457) {
                         ?>
                                 <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
                             <?php
@@ -242,15 +255,15 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($biologia_marina > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($biologia_marina > 457) {
                                     echo "Cumples con los requisitos de puntaje para la postulación.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($biologia_marina > 458) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($biologia_marina > 457) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -271,8 +284,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($derecho > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($derecho > 457) {
                                 if ($chistoria > 0) {
                         ?>
                                     <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
@@ -295,10 +308,10 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($derecho > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($derecho > 457) {
                                     if ($chistoria > 0) {
-                                        echo "Cumples con los requisitos para la postulación.";
+                                        echo "Cumples con los requisitos de puntaje para la postulación.";
                                     } else {
                                         echo "No realizaste la prueba de <strong>Historia</strong> la cual es un <strong>*Requisito obligatorio*</strong>.";
                                     }
@@ -310,9 +323,9 @@
                                     }
                                 }
                             } else {
-                                if ($derecho > 458) {
+                                if ($derecho > 457) {
                                     if ($chistoria > 0) {
-                                        echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                        echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                     } else {
                                         echo "No cumples con el <strong>puntaje promedio</strong>, ni realizaste la prueba de <strong>Historia</strong> los cuales son <strong>*Requisitos obligatorios*</strong>.";
                                     }
@@ -340,8 +353,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($enfermeria > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($enfermeria > 457) {
                                 if ($cciencias > 0) {
                         ?>
                                     <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
@@ -364,10 +377,10 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($enfermeria > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($enfermeria > 457) {
                                     if ($cciencias > 0) {
-                                        echo "Cumples con los requisitos para la postulación.";
+                                        echo "Cumples con los requisitos de puntaje para la postulación.";
                                     } else {
                                         echo "No realizaste la prueba de <strong>Ciencias</strong> la cual es un <strong>*Requisito obligatorio*</strong>.";
                                     }
@@ -379,9 +392,9 @@
                                     }
                                 }
                             } else {
-                                if ($enfermeria > 458) {
+                                if ($enfermeria > 457) {
                                     if ($cciencias > 0) {
-                                        echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                        echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                     } else {
                                         echo "No cumples con el <strong>puntaje promedio</strong>, ni realizaste la prueba de <strong>Ciencias</strong> los cuales son <strong>*Requisitos obligatorios*</strong>.";
                                     }
@@ -409,8 +422,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($fonoaudiologia > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($fonoaudiologia > 457) {
                                 if ($cciencias > 0) {
                         ?>
                                     <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
@@ -433,10 +446,10 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($fonoaudiologia > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($fonoaudiologia > 457) {
                                     if ($cciencias > 0) {
-                                        echo "Cumples con los requisitos para la postulación.";
+                                        echo "Cumples con los requisitos de puntaje para la postulación.";
                                     } else {
                                         echo "No realizaste la prueba de <strong>Ciencias</strong> la cual es un <strong>*Requisito obligatorio*</strong>.";
                                     }
@@ -448,9 +461,9 @@
                                     }
                                 }
                             } else {
-                                if ($fonoaudiologia > 458) {
+                                if ($fonoaudiologia > 457) {
                                     if ($cciencias > 0) {
-                                        echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                        echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                     } else {
                                         echo "No cumples con el <strong>puntaje promedio</strong>, ni realizaste la prueba de <strong>Ciencias</strong> los cuales son <strong>*Requisitos obligatorios*</strong>.";
                                     }
@@ -478,8 +491,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($ingenieria_plancomun > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($ingenieria_plancomun > 457) {
                         ?>
                                 <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
                             <?php
@@ -496,15 +509,15 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($ingenieria_plancomun > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($ingenieria_plancomun > 457) {
                                     echo "Cumples con los requisitos de puntaje para la postulación.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($ingenieria_plancomun > 458) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($ingenieria_plancomun > 457) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -525,8 +538,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($ingenieria_plancomun > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($ingenieria_plancomun > 457) {
                         ?>
                                 <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
                             <?php
@@ -543,15 +556,15 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($ingenieria_plancomun > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($ingenieria_plancomun > 457) {
                                     echo "Cumples con los requisitos de puntaje para la postulación.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($ingenieria_plancomun > 458) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($ingenieria_plancomun > 457) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -572,8 +585,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($ingenieria_plancomun > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($ingenieria_plancomun > 457) {
                         ?>
                                 <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
                             <?php
@@ -590,15 +603,15 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($ingenieria_plancomun > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($ingenieria_plancomun > 457) {
                                     echo "Cumples con los requisitos de puntaje para la postulación.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($ingenieria_plancomun > 458) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($ingenieria_plancomun > 457) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -619,8 +632,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($ingenieria_plancomun > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($ingenieria_plancomun > 457) {
                         ?>
                                 <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
                             <?php
@@ -637,15 +650,15 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($ingenieria_plancomun > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($ingenieria_plancomun > 457) {
                                     echo "Cumples con los requisitos de puntaje para la postulación.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($ingenieria_plancomun > 458) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($ingenieria_plancomun > 457) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -666,8 +679,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($ingenieria_civilplancomun > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($ingenieria_civilplancomun > 457) {
                                 if ($cmatematica2 > 0) {
                         ?>
                                     <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
@@ -690,10 +703,10 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($ingenieria_civilplancomun > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($ingenieria_civilplancomun > 457) {
                                     if ($cmatematica2 > 0) {
-                                        echo "Cumples con los requisitos para la postulación.";
+                                        echo "Cumples con los requisitos de puntaje para la postulación.";
                                     } else {
                                         echo "No realizaste la prueba de <strong>Matematicas M2</strong> la cual es un <strong>*Requisito obligatorio*</strong>.";
                                     }
@@ -705,9 +718,9 @@
                                     }
                                 }
                             } else {
-                                if ($ingenieria_civilplancomun > 458) {
+                                if ($ingenieria_civilplancomun > 457) {
                                     if ($cmatematica2 > 0) {
-                                        echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                        echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                     } else {
                                         echo "No cumples con el <strong>puntaje promedio</strong>, ni realizaste la prueba de <strong>Matematicas M2</strong> los cuales son <strong>*Requisitos obligatorios*</strong>.";
                                     }
@@ -735,8 +748,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($ingenieria_civilplancomun > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($ingenieria_civilplancomun > 457) {
                                 if ($cmatematica2 > 0) {
                         ?>
                                     <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
@@ -759,10 +772,10 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($ingenieria_civilplancomun > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($ingenieria_civilplancomun > 457) {
                                     if ($cmatematica2 > 0) {
-                                        echo "Cumples con los requisitos para la postulación.";
+                                        echo "Cumples con los requisitos de puntaje para la postulación.";
                                     } else {
                                         echo "No realizaste la prueba de <strong>Matematicas M2</strong> la cual es un <strong>*Requisito obligatorio*</strong>.";
                                     }
@@ -774,9 +787,9 @@
                                     }
                                 }
                             } else {
-                                if ($ingenieria_civilplancomun > 458) {
+                                if ($ingenieria_civilplancomun > 457) {
                                     if ($cmatematica2 > 0) {
-                                        echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                        echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                     } else {
                                         echo "No cumples con el <strong>puntaje promedio</strong>, ni realizaste la prueba de <strong>Matematicas M2</strong> los cuales son <strong>*Requisitos obligatorios*</strong>.";
                                     }
@@ -804,8 +817,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($ingenieria_civilplancomun > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($ingenieria_civilplancomun > 457) {
                                 if ($cmatematica2 > 0) {
                         ?>
                                     <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
@@ -828,10 +841,10 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($ingenieria_civilplancomun > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($ingenieria_civilplancomun > 457) {
                                     if ($cmatematica2 > 0) {
-                                        echo "Cumples con los requisitos para la postulación.";
+                                        echo "Cumples con los requisitos de puntaje para la postulación.";
                                     } else {
                                         echo "No realizaste la prueba de <strong>Matematicas M2</strong> la cual es un <strong>*Requisito obligatorio*</strong>.";
                                     }
@@ -843,9 +856,9 @@
                                     }
                                 }
                             } else {
-                                if ($ingenieria_civilplancomun > 458) {
+                                if ($ingenieria_civilplancomun > 457) {
                                     if ($cmatematica2 > 0) {
-                                        echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                        echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                     } else {
                                         echo "No cumples con el <strong>puntaje promedio</strong>, ni realizaste la prueba de <strong>Matematicas M2</strong> los cuales son <strong>*Requisitos obligatorios*</strong>.";
                                     }
@@ -873,8 +886,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($ingenieria_civilplancomun > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($ingenieria_civilplancomun > 457) {
                                 if ($cmatematica2 > 0) {
                         ?>
                                     <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
@@ -897,10 +910,10 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($ingenieria_civilplancomun > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($ingenieria_civilplancomun > 457) {
                                     if ($cmatematica2 > 0) {
-                                        echo "Cumples con los requisitos para la postulación.";
+                                        echo "Cumples con los requisitos de puntaje para la postulación.";
                                     } else {
                                         echo "No realizaste la prueba de <strong>Matematicas M2</strong> la cual es un <strong>*Requisito obligatorio*</strong>.";
                                     }
@@ -912,9 +925,9 @@
                                     }
                                 }
                             } else {
-                                if ($ingenieria_civilplancomun > 458) {
+                                if ($ingenieria_civilplancomun > 457) {
                                     if ($cmatematica2 > 0) {
-                                        echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                        echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                     } else {
                                         echo "No cumples con el <strong>puntaje promedio</strong>, ni realizaste la prueba de <strong>Matematicas M2</strong> los cuales son <strong>*Requisitos obligatorios*</strong>.";
                                     }
@@ -942,8 +955,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($ingenieria_comercial > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($ingenieria_comercial > 457) {
                         ?>
                                 <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
                             <?php
@@ -960,15 +973,15 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($ingenieria_comercial > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($ingenieria_comercial > 457) {
                                     echo "Cumples con los requisitos de puntaje para la postulación.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($ingenieria_comercial > 458) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($ingenieria_comercial > 457) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -989,8 +1002,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($ingenieria_construccion > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($ingenieria_construccion > 457) {
                                 if ($cmatematica2 > 0) {
                         ?>
                                     <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
@@ -1013,10 +1026,10 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($ingenieria_construccion > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($ingenieria_construccion > 457) {
                                     if ($cmatematica2 > 0) {
-                                        echo "Cumples con los requisitos para la postulación.";
+                                        echo "Cumples con los requisitos de puntaje para la postulación.";
                                     } else {
                                         echo "No realizaste la prueba de <strong>Matematicas M2</strong> la cual es un <strong>*Requisito obligatorio*</strong>.";
                                     }
@@ -1028,9 +1041,9 @@
                                     }
                                 }
                             } else {
-                                if ($ingenieria_construccion > 458) {
+                                if ($ingenieria_construccion > 457) {
                                     if ($cmatematica2 > 0) {
-                                        echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                        echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                     } else {
                                         echo "No cumples con el <strong>puntaje promedio</strong>, ni realizaste la prueba de <strong>Matematicas M2</strong> los cuales son <strong>*Requisitos obligatorios*</strong>.";
                                     }
@@ -1058,8 +1071,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($kinesiologia > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($kinesiologia > 457) {
                                 if ($cciencias > 0) {
                         ?>
                                     <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
@@ -1082,10 +1095,10 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($kinesiologia > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($kinesiologia > 457) {
                                     if ($cciencias > 0) {
-                                        echo "Cumples con los requisitos para la postulación.";
+                                        echo "Cumples con los requisitos de puntaje para la postulación.";
                                     } else {
                                         echo "No realizaste la prueba de <strong>Ciencias</strong> la cual es un <strong>*Requisito obligatorio*</strong>.";
                                     }
@@ -1097,9 +1110,9 @@
                                     }
                                 }
                             } else {
-                                if ($kinesiologia > 458) {
+                                if ($kinesiologia > 457) {
                                     if ($cciencias > 0) {
-                                        echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                        echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                     } else {
                                         echo "No cumples con el <strong>puntaje promedio</strong>, ni realizaste la prueba de <strong>Ciencias</strong> los cuales son <strong>*Requisitos obligatorios*</strong>.";
                                     }
@@ -1127,8 +1140,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 600) {
-                            if ($medicina > 650) {
+                        if ((($cmatematica1 + $clectora) / 2) > 599) {
+                            if ($medicina > 649) {
                         ?>
                                 <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
                             <?php
@@ -1145,15 +1158,15 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 600) {
-                                if ($medicina > 650) {
+                            if ((($cmatematica1 + $clectora) / 2) > 599) {
+                                if ($medicina > 649) {
                                     echo "Cumples con los requisitos de puntaje para la postulación.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($medicina > 650) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($medicina > 649) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -1174,8 +1187,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($nutricion_dietetica > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($nutricion_dietetica > 457) {
                                 if ($cciencias > 0) {
                         ?>
                                     <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
@@ -1198,10 +1211,10 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($nutricion_dietetica > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($nutricion_dietetica > 457) {
                                     if ($cciencias > 0) {
-                                        echo "Cumples con los requisitos para la postulación.";
+                                        echo "Cumples con los requisitos de puntaje para la postulación.";
                                     } else {
                                         echo "No realizaste la prueba de <strong>Ciencias</strong> la cual es un <strong>*Requisito obligatorio*</strong>.";
                                     }
@@ -1213,9 +1226,9 @@
                                     }
                                 }
                             } else {
-                                if ($nutricion_dietetica > 458) {
+                                if ($nutricion_dietetica > 457) {
                                     if ($cciencias > 0) {
-                                        echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                        echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                     } else {
                                         echo "No cumples con el <strong>puntaje promedio</strong>, ni realizaste la prueba de <strong>Ciencias</strong> los cuales son <strong>*Requisitos obligatorios*</strong>.";
                                     }
@@ -1243,54 +1256,54 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 502) {
-                            if ($pedagogia_castellano > 502) {
+                        if ((($cmatematica1 + $clectora) / 2) > 501) {
+                            if ($pedagogia_castellano > 501) {
                         ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             } else {
                             ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a class="cambio" href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a class="cambio" href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             }
                         } else {
                             ?>
                             <td class="fa2">
-                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </span>
                             </td>
                             <td class="normal">
-                                <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                             </td>
                         <?php
                         }
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 502) {
-                                if ($pedagogia_castellano > 502) {
-                                    echo "Cumples con los requisitos de puntaje para la postulación.";
+                            if ((($cmatematica1 + $clectora) / 2) > 501) {
+                                if ($pedagogia_castellano > 501) {
+                                    echo "Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($pedagogia_castellano > 502) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($pedagogia_castellano > 501) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -1311,54 +1324,54 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 502) {
-                            if ($pedagogia_basica > 502) {
+                        if ((($cmatematica1 + $clectora) / 2) > 501) {
+                            if ($pedagogia_basica > 501) {
                         ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             } else {
                             ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a class="cambio" href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a class="cambio" href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             }
                         } else {
                             ?>
                             <td class="fa2">
-                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </span>
                             </td>
                             <td class="normal">
-                                <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                             </td>
                         <?php
                         }
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 502) {
-                                if ($pedagogia_basica > 502) {
-                                    echo "Cumples con los requisitos de puntaje para la postulación.";
+                            if ((($cmatematica1 + $clectora) / 2) > 501) {
+                                if ($pedagogia_basica > 501) {
+                                    echo "Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($pedagogia_basica > 502) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($pedagogia_basica > 501) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -1379,54 +1392,54 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 502) {
-                            if ($pedagogia_diferencial > 502) {
+                        if ((($cmatematica1 + $clectora) / 2) > 501) {
+                            if ($pedagogia_diferencial > 501) {
                         ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             } else {
                             ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a class="cambio" href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a class="cambio" href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             }
                         } else {
                             ?>
                             <td class="fa2">
-                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </span>
                             </td>
                             <td class="normal">
-                                <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                             </td>
                         <?php
                         }
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 502) {
-                                if ($pedagogia_diferencial > 502) {
-                                    echo "Cumples con los requisitos de puntaje para la postulación.";
+                            if ((($cmatematica1 + $clectora) / 2) > 501) {
+                                if ($pedagogia_diferencial > 501) {
+                                    echo "Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($pedagogia_diferencial > 502) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($pedagogia_diferencial > 501) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -1447,54 +1460,54 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 502) {
-                            if ($pedagogia_fisica > 502) {
+                        if ((($cmatematica1 + $clectora) / 2) > 501) {
+                            if ($pedagogia_fisica > 501) {
                         ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             } else {
                             ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a class="cambio" href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a class="cambio" href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             }
                         } else {
                             ?>
                             <td class="fa2">
-                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </span>
                             </td>
                             <td class="normal">
-                                <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                             </td>
                         <?php
                         }
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 502) {
-                                if ($pedagogia_fisica > 502) {
-                                    echo "Cumples con los requisitos de puntaje para la postulación.";
+                            if ((($cmatematica1 + $clectora) / 2) > 501) {
+                                if ($pedagogia_fisica > 501) {
+                                    echo "Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($pedagogia_fisica > 502) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($pedagogia_fisica > 501) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -1515,54 +1528,54 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 502) {
-                            if ($pedagogia_parvularia > 502) {
+                        if ((($cmatematica1 + $clectora) / 2) > 501) {
+                            if ($pedagogia_parvularia > 501) {
                         ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             } else {
                             ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a class="cambio" href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a class="cambio" href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             }
                         } else {
                             ?>
                             <td class="fa2">
-                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </span>
                             </td>
                             <td class="normal">
-                                <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                             </td>
                         <?php
                         }
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 502) {
-                                if ($pedagogia_parvularia > 502) {
-                                    echo "Cumples con los requisitos de puntaje para la postulación.";
+                            if ((($cmatematica1 + $clectora) / 2) > 501) {
+                                if ($pedagogia_parvularia > 501) {
+                                    echo "Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($pedagogia_parvularia > 502) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($pedagogia_parvularia > 501) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -1583,54 +1596,54 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 502) {
-                            if ($pedagogia_historia > 502) {
+                        if ((($cmatematica1 + $clectora) / 2) > 501) {
+                            if ($pedagogia_historia > 501) {
                         ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             } else {
                             ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a class="cambio" href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a class="cambio" href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             }
                         } else {
                             ?>
                             <td class="fa2">
-                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </span>
                             </td>
                             <td class="normal">
-                                <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                             </td>
                         <?php
                         }
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 502) {
-                                if ($pedagogia_historia > 502) {
-                                    echo "Cumples con los requisitos de puntaje para la postulación.";
+                            if ((($cmatematica1 + $clectora) / 2) > 501) {
+                                if ($pedagogia_historia > 501) {
+                                    echo "Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($pedagogia_historia > 502) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($pedagogia_historia > 501) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -1651,54 +1664,54 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 502) {
-                            if ($pedagogia_ingles > 502) {
+                        if ((($cmatematica1 + $clectora) / 2) > 501) {
+                            if ($pedagogia_ingles > 501) {
                         ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             } else {
                             ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a class="cambio" href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a class="cambio" href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             }
                         } else {
                             ?>
                             <td class="fa2">
-                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </span>
                             </td>
                             <td class="normal">
-                                <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                             </td>
                         <?php
                         }
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 502) {
-                                if ($pedagogia_ingles > 502) {
-                                    echo "Cumples con los requisitos de puntaje para la postulación.";
+                            if ((($cmatematica1 + $clectora) / 2) > 501) {
+                                if ($pedagogia_ingles > 501) {
+                                    echo "Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($pedagogia_ingles > 502) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($pedagogia_ingles > 501) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -1709,7 +1722,7 @@
                     <tr class="data-row2 data-container2">
                         <td data-label="Código" class="text-end data-item2">33418</td>
                         <td data-label="Carrera" class="text-start data-item2">
-                            <a href="http://umag.cl/facultades/educacionycienciassociales/deh/?page_id=30" style="display: block; width: 100%; height: 100%; text-decoration: none; color: inherit;">PEDAGOGÍA EN MÚSICA PARA EDUCACIÓN INICIAL, BÁSICA Y MEDIA</a>
+                            <a href="https://admision.umag.cl/?page_id=3887" style="display: block; width: 100%; height: 100%; text-decoration: none; color: inherit;">PEDAGOGÍA EN MÚSICA PARA EDUCACIÓN INICIAL, BÁSICA Y MEDIA</a>
                         </td>
                         <td data-label="Vacantes 2025" class="data-item2">15</td>
                         <td data-label="Puntaje Último Matriculado 2024" class="data-item2">CARRERA NUEVA</td>
@@ -1719,54 +1732,54 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 502) {
-                            if ($pedagogia_musica > 502) {
+                        if ((($cmatematica1 + $clectora) / 2) > 501) {
+                            if ($pedagogia_musica > 501) {
                         ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             } else {
                             ?>
                                 <td class="fa2">
-                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </span>
                                 </td>
                                 <td class="normal">
-                                    <a class="cambio" href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                    <a class="cambio" href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </td>
                             <?php
                             }
                         } else {
                             ?>
                             <td class="fa2">
-                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </span>
                             </td>
                             <td class="normal">
-                                <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                             </td>
                         <?php
                         }
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 502) {
-                                if ($pedagogia_musica > 502) {
-                                    echo "Cumples con los requisitos de puntaje para la postulación.";
+                            if ((($cmatematica1 + $clectora) / 2) > 501) {
+                                if ($pedagogia_musica > 501) {
+                                    echo "Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($pedagogia_musica > 502) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($pedagogia_musica > 501) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -1787,62 +1800,62 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 502) {
-                            if ($pedagogia_matematicas > 502) {
+                        if ((($cmatematica1 + $clectora) / 2) > 501) {
+                            if ($pedagogia_matematicas > 501) {
                                 if ($cmatematica2 > 0) {
                         ?>
                                     <td class="fa2">
-                                        <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..">
-                                            <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></a>
+                                        <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                            <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                         </span>
                                     </td>
                                     <td class="normal">
-                                        <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Cumples con uno de los cinco requisitos para postular a Pedagogia, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                     </td>
                                 <?php
                                 } else {
                                 ?>
                                     <td class="fa2">
-                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
-                                </span>
-                            </td>
-                            <td class="normal">
-                                <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
-                            </td>
+                                        <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                            <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
+                                        </span>
+                                    </td>
+                                    <td class="normal">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
+                                    </td>
                                 <?php
                                 }
                             } else {
                                 ?>
                                 <td class="fa2">
-                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
-                                </span>
-                            </td>
-                            <td class="normal">
-                                <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
-                            </td>
+                                    <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                        <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
+                                    </span>
+                                </td>
+                                <td class="normal">
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
+                                </td>
                             <?php
                             }
                         } else {
                             ?>
                             <td class="fa2">
-                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Revisa si cumples con otros requisitos para esta carrera.">
-                                    <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia"><i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.">
+                                    <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos"><i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                                 </span>
                             </td>
                             <td class="normal">
-                                <a href="https://demre.cl/postulacion/como-postulo-a-una-universidad-p2025/requisitos-postulacion-pedagogia" style="color: black; text-decoration: none;">Revisa si cumples con otros requisitos para postular, Pincha para mas Info..<i class="fa-solid fa-circle fa-xl" style="color: #ff0000;"></i></a>
+                                <a href="https://acceso.mineduc.cl/portal-pedagogias/#:~:text=S%C3%B3lo%20para%20el%20Proceso%20de,60%2C%20ser%C3%A1%20de%20528%20puntos" style="color: black; text-decoration: none;">No cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley. Haz click para revisar aquí.<i class="fa-solid fa-circle fa-xl" style="color: #ff7300;"></i></a>
                             </td>
                         <?php
                         }
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 502) {
-                                if ($pedagogia_matematicas > 502) {
+                            if ((($cmatematica1 + $clectora) / 2) > 501) {
+                                if ($pedagogia_matematicas > 501) {
                                     if ($cmatematica2 > 0) {
-                                        echo "Cumples con los requisitos para la postulación.";
+                                        echo "Cumples con el puntaje mínimo requerido por la universidad. Sin embargo, debes cumplir con al menos uno de los criterios establecidos por ley.";
                                     } else {
                                         echo "No realizaste la prueba de <strong>Matematicas M2</strong> la cual es un <strong>*Requisito obligatorio*</strong>.";
                                     }
@@ -1854,9 +1867,9 @@
                                     }
                                 }
                             } else {
-                                if ($pedagogia_matematicas > 502) {
+                                if ($pedagogia_matematicas > 501) {
                                     if ($cmatematica2 > 0) {
-                                        echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                        echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                     } else {
                                         echo "No cumples con el <strong>puntaje promedio</strong>, ni realizaste la prueba de <strong>Matematicas M2</strong> los cuales son <strong>*Requisitos obligatorios*</strong>.";
                                     }
@@ -1884,8 +1897,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($psicologia > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($psicologia > 457) {
                         ?>
                                 <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
                             <?php
@@ -1902,15 +1915,15 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($psicologia > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($psicologia > 457) {
                                     echo "Cumples con los requisitos de puntaje para la postulación.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
                             } else {
-                                if ($psicologia > 458) {
-                                    echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                if ($psicologia > 457) {
+                                    echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                 } else {
                                     echo "No cumples con los requisitos de <strong>puntaje promedio</strong> ni los requisitos de <strong>puntaje ponderado</strong> obligatorios para postular a esta carrera.";
                                 }
@@ -1931,8 +1944,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($terapia_ocupacional > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($terapia_ocupacional > 457) {
                                 if ($cciencias > 0) {
                         ?>
                                     <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
@@ -1955,10 +1968,10 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($terapia_ocupacional > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($terapia_ocupacional > 457) {
                                     if ($cciencias > 0) {
-                                        echo "Cumples con los requisitos para la postulación.";
+                                        echo "Cumples con los requisitos de puntaje para la postulación.";
                                     } else {
                                         echo "No realizaste la prueba de <strong>Ciencias</strong> la cual es un <strong>*Requisito obligatorio*</strong>.";
                                     }
@@ -1970,9 +1983,9 @@
                                     }
                                 }
                             } else {
-                                if ($terapia_ocupacional > 458) {
+                                if ($terapia_ocupacional > 457) {
                                     if ($cciencias > 0) {
-                                        echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                        echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                     } else {
                                         echo "No cumples con el <strong>puntaje promedio</strong>, ni realizaste la prueba de <strong>Ciencias</strong> los cuales son <strong>*Requisitos obligatorios*</strong>.";
                                     }
@@ -2000,8 +2013,8 @@
                             </span>
                         </td>
                         <?php
-                        if ((($cmatematica1 + $clectora) / 2) > 458) {
-                            if ($trabajo_social > 458) {
+                        if ((($cmatematica1 + $clectora) / 2) > 457) {
+                            if ($trabajo_social > 457) {
                                 if ($chistoria > 0) {
                         ?>
                                     <td class="fa2"><i class="fa-solid fa-circle fa-xl" style="color: #2ee22b;"></i></td>
@@ -2024,10 +2037,10 @@
                         ?>
                         <td class="texto-justificado">
                             <?php
-                            if ((($cmatematica1 + $clectora) / 2) > 458) {
-                                if ($trabajo_social > 458) {
+                            if ((($cmatematica1 + $clectora) / 2) > 457) {
+                                if ($trabajo_social > 457) {
                                     if ($chistoria > 0) {
-                                        echo "Cumples con los requisitos para la postulación.";
+                                        echo "Cumples con los requisitos de puntaje para la postulación.";
                                     } else {
                                         echo "No realizaste la prueba de <strong>Historia</strong> la cual es un <strong>*Requisito obligatorio*</strong>.";
                                     }
@@ -2039,9 +2052,9 @@
                                     }
                                 }
                             } else {
-                                if ($trabajo_social > 458) {
+                                if ($trabajo_social > 457) {
                                     if ($chistoria > 0) {
-                                        echo "No cumples con los requisitos de <strong>puntaje promedio</strong> obligatorios para postular a esta carrera.";
+                                        echo "No cumples con los requisitos de <strong>Puntaje Promedio de Postulación</strong> obligatorios para postular a esta carrera.";
                                     } else {
                                         echo "No cumples con el <strong>puntaje promedio</strong>, ni realizaste la prueba de <strong>Historia</strong> los cuales son <strong>*Requisitos obligatorios*</strong>.";
                                     }
@@ -2060,9 +2073,14 @@
         </div>
         <br>
         <div class="text-center m-3">
-            <a class="btn bg-light text-black" href="perfil.php">Realizar otra simulacion</a>
+            <a class="btn bg-light text-black" href="index.php">Realizar otra simulacion</a>
         </div>
         <br>
+        <div class="row justify-content-center mx-5 ms-5 mb-5">
+            <h5 class="text-center mt-2 w-100 w-md-75 fs-6 fs-md-5">Esta simulación es solo una referencia a partir del proceso de admisión del año anterior. Los puntajes de selección pueden variar de un año a otro y es responsabilidad del usuario informarse y postular <a class="alert-link" href="https://demre.cl">vía Demre</a> en las fechas oficiales.</h5>
+            <h5 class="text-center mt-2 w-100 w-md-75 fs-6 fs-md-5">Es responsabilidad del o la postulante informarse en publicación DEMRE <a class="alert-link" href="https://demre.cl/publicaciones/2024/2024-23-09-27-oferta-carreras-vacantes-ponderaciones-p2024">“Oferta Definitiva de Carreras, 2025”</a>, sobre ajustes en ponderaciones, requisitos y plazos para la Admisión 2025.</h5>
+            <h5 class="text-center mt-2 w-100 w-md-75 fs-6 fs-md-5">Para más orientación consulta en nuestro Centro de Atención al Postulante o vía <a class="alert-link" href="https://www.instagram.com/admision_umag/">@admision_umag</h5>
+        </div>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <footer>
